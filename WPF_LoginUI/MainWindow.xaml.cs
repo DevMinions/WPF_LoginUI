@@ -23,14 +23,18 @@ namespace WPF_LoginUI
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
+
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            //string username = txtUsername.Text;
+            //string password = txtPassword.Text;
 
-            if (username == "wpf" && password == "666")
+            if (Username == "wpf" && Password == "666")
             {
                 //MessageBox.Show("ok");
                 Index index = new Index();
@@ -41,6 +45,8 @@ namespace WPF_LoginUI
             else
             {
                 MessageBox.Show("输入的用户名或者密码不正确");
+                //txtUsername.Text = "";
+                //txtPassword.Text = "";
             }
         }
     }

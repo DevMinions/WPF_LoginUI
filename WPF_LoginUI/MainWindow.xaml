@@ -29,10 +29,10 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="用户名" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtUsername" Grid.Row="0" Grid.Column="1" Margin="2"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Username}"/>
 
             <TextBlock Text="密码" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtPassword" Grid.Row="1" Grid.Column="1" Margin="2"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Password}"/>
 
             <CheckBox Grid.ColumnSpan="2" Content="记住密码"  Grid.Row="2"/>
 
