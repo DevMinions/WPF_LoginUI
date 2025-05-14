@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace WPF_LoginUI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
@@ -26,9 +28,35 @@ namespace WPF_LoginUI
             this.DataContext = this;
         }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        private string _Username;
 
+        public string Username
+        {
+            get { return _Username; }
+            set
+            {
+                _Username = value;
+                OnPropertyChanged("Username");
+            }
+        }
+
+        private string _Password;
+
+        public string Password
+        {
+            get { return _Password; }
+            set
+            {
+                _Password = value;
+                OnPropertyChanged("Password");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //string username = txtUsername.Text;
@@ -45,8 +73,8 @@ namespace WPF_LoginUI
             else
             {
                 MessageBox.Show("输入的用户名或者密码不正确");
-                //txtUsername.Text = "";
-                //txtPassword.Text = "";
+                Username = "";
+                Password = "";
             }
         }
     }
