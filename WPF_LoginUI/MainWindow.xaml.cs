@@ -22,13 +22,15 @@ namespace WPF_LoginUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        LoginModel loginModel;
+        //LoginModel loginModel;
+        private LoginVM loginVM;
 
         public MainWindow()
         {
             InitializeComponent();
-            loginModel = new LoginModel();
-            this.DataContext = loginModel;
+            //loginModel = new LoginModel();
+            loginVM = new LoginVM();
+            this.DataContext = loginVM;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,7 +38,7 @@ namespace WPF_LoginUI
             //string username = txtUsername.Text;
             //string password = txtPassword.Text;
 
-            if (loginModel.Username == "wpf" && loginModel.Password == "666")
+            if (loginVM.LoginModel.Username == "wpf" && loginVM.LoginModel.Password == "666")
             {
                 //MessageBox.Show("ok");
                 Index index = new Index();
@@ -47,40 +49,19 @@ namespace WPF_LoginUI
             else
             {
                 MessageBox.Show("输入的用户名或者密码不正确");
-                loginModel.Username = "";
-                loginModel.Password = "";
+                loginVM.LoginModel.Username = "";
+                loginVM.LoginModel.Password = "";
+                loginVM.LoginModel = loginVM.LoginModel;
             }
         }
     }
 
-    public class LoginModel: INotifyPropertyChanged
-    {
-        private string _Username;
-        public string Username
-        {
-            get { return _Username; }
-            set
-            {
-                _Username = value;
-                OnPropertyChanged("Username");
-            }
-        }
-
-        private string _Password;
-        public string Password
-        {
-            get { return _Password; }
-            set
-            {
-                _Password = value;
-                OnPropertyChanged("Password");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+    //public class LoginModel: INotifyPropertyChanged
+    //{
+    //    public event PropertyChangedEventHandler PropertyChanged;
+    //    protected void OnPropertyChanged(string propertyName)
+    //    {
+    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    //    }
+    //}
 }
