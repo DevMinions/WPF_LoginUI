@@ -20,16 +20,42 @@ namespace WPF_LoginUI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
+        LoginModel loginModel;
+
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
+            loginModel = new LoginModel();
+            this.DataContext = loginModel;
         }
 
-        private string _Username;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //string username = txtUsername.Text;
+            //string password = txtPassword.Text;
 
+            if (loginModel.Username == "wpf" && loginModel.Password == "666")
+            {
+                //MessageBox.Show("ok");
+                Index index = new Index();
+                index.Show();
+
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("输入的用户名或者密码不正确");
+                loginModel.Username = "";
+                loginModel.Password = "";
+            }
+        }
+    }
+
+    public class LoginModel: INotifyPropertyChanged
+    {
+        private string _Username;
         public string Username
         {
             get { return _Username; }
@@ -41,7 +67,6 @@ namespace WPF_LoginUI
         }
 
         private string _Password;
-
         public string Password
         {
             get { return _Password; }
@@ -56,26 +81,6 @@ namespace WPF_LoginUI
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string username = txtUsername.Text;
-            //string password = txtPassword.Text;
-
-            if (Username == "wpf" && Password == "666")
-            {
-                //MessageBox.Show("ok");
-                Index index = new Index();
-                index.Show();
-
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("输入的用户名或者密码不正确");
-                Username = "";
-                Password = "";
-            }
         }
     }
 }
