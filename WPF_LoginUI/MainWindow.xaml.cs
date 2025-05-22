@@ -38,7 +38,7 @@ namespace WPF_LoginUI
             //string username = txtUsername.Text;
             //string password = txtPassword.Text;
 
-            if (loginVM.LoginModel.Username == "wpf" && loginVM.LoginModel.Password == "666")
+            if (loginVM.Username == "wpf" && loginVM.Password == "666")
             {
                 //MessageBox.Show("ok");
                 Index index = new Index();
@@ -49,19 +49,9 @@ namespace WPF_LoginUI
             else
             {
                 MessageBox.Show("输入的用户名或者密码不正确");
-                loginVM.LoginModel.Username = "";
-                loginVM.LoginModel.Password = "";
-                loginVM.LoginModel = loginVM.LoginModel;
+                loginVM.Username = "";
+                loginVM.Password = "";
             }
         }
     }
-
-    //public class LoginModel: INotifyPropertyChanged
-    //{
-    //    public event PropertyChangedEventHandler PropertyChanged;
-    //    protected void OnPropertyChanged(string propertyName)
-    //    {
-    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    //    }
-    //}
 }

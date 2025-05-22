@@ -14,19 +14,27 @@ namespace WPF_LoginUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private LoginModel _loginModel;
+        private LoginModel _loginModel = new LoginModel();
 
-		public LoginModel LoginModel
+        public string Username
         {
-			get {
-				if (_loginModel == null)
-					_loginModel = new LoginModel();
-				return _loginModel; 
-			}
-			set { 
-                _loginModel = value; 
-                OnPropertyChanged("LoginModel");
+            get { return _loginModel.Username; }
+            set
+            {
+                _loginModel.Username = value;
+                OnPropertyChanged("Username");
             }
-		}
-	}
+        }
+
+        public string Password
+        {
+            get { return _loginModel.Password; }
+            set
+            {
+                _loginModel.Password = value;
+                OnPropertyChanged("Password");
+            }
+        }
+
+    }
 }
