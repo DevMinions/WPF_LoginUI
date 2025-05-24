@@ -22,36 +22,10 @@ namespace WPF_LoginUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        //LoginModel loginModel;
-        private LoginVM loginVM;
-
         public MainWindow()
         {
             InitializeComponent();
-            //loginModel = new LoginModel();
-            loginVM = new LoginVM();
-            this.DataContext = loginVM;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string username = txtUsername.Text;
-            //string password = txtPassword.Text;
-
-            if (loginVM.Username == "wpf" && loginVM.Password == "666")
-            {
-                //MessageBox.Show("ok");
-                Index index = new Index();
-                index.Show();
-
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("输入的用户名或者密码不正确");
-                loginVM.Username = "";
-                loginVM.Password = "";
-            }
+            this.DataContext = new LoginVM(this);
         }
     }
 }

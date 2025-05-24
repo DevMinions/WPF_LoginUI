@@ -4,11 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace WPF_LoginUI
 {
     public class LoginVM : INotifyPropertyChanged
     {
+        private MainWindow _main;
+        public LoginVM(MainWindow main)
+        {
+            _main = main;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -36,5 +44,35 @@ namespace WPF_LoginUI
             }
         }
 
+        void LoginFunc()
+        {
+            if (Username == "wpf" && Password == "666")
+            {
+                //MessageBox.Show("ok");
+                Index index = new Index();
+                index.Show();
+
+                _main.Hide();
+            }
+            else
+            {
+                MessageBox.Show("输入的用户名或者密码不正确");
+                Username = "";
+                Password = "";
+            }
+        }
+
+        bool CanLoginExecute()
+        {
+            return true;
+        }
+
+        public ICommand LoginAction
+        {
+            get
+            {
+                return new RelayCommond(LoginFunc, CanLoginExecute);
+            }
+        }
     }
 }
