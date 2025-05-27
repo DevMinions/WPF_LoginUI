@@ -36,7 +36,7 @@
 
             <CheckBox Grid.ColumnSpan="2" Content="记住密码"  Grid.Row="2"/>
 
-            <Button Grid.ColumnSpan="2" Grid.Row="3" Content="登录" Command="{Binding LoginAction}"/>
+            <local:CustomButton ButtonCornerRadius="5" BackgroundHover="DarkBlue" BackgroundPressed="YellowGreen" Foreground="#FFFFFF" Background="#3C7FF8" Grid.ColumnSpan="2" Grid.Row="3" Content="登录" Command="{Binding LoginAction}"/>
         </Grid>
     </Grid>
 </Window>
