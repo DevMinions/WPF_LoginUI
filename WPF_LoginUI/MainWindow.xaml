@@ -29,11 +29,12 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="用户名" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Username}"/>
+            <local:CustomTextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Username}"/>
 
             <TextBlock Text="密码" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Password}"/>
-
+            <!--<TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding MyPasswordVM}"/>-->
+            <PasswordBox x:Name="pbox" Grid.Column="1" Grid.Row="1" local:PasswordBoxHelper.IsEnablePasswordPropertyChanged="True" local:PasswordBoxHelper.Pwd="{Binding MyPasswordVM,Mode=TwoWay}"/>
+            <!--<TextBox Text="{Binding ElementName=pbox,Path=(local:PasswordBoxHelper.Pwd)}"/> -->
             <CheckBox Grid.ColumnSpan="2" Content="记住密码"  Grid.Row="2"/>
 
             <local:CustomButton ButtonCornerRadius="5" BackgroundHover="DarkBlue" BackgroundPressed="YellowGreen" Foreground="#FFFFFF" Background="#3C7FF8" Grid.ColumnSpan="2" Grid.Row="3" Content="登录" Command="{Binding LoginAction}"/>
